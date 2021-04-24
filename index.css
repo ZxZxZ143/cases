@@ -1,0 +1,174 @@
+p {
+    color: rgba(255, 255, 255, .7);
+}
+
+h1 {
+    color: rgba(255, 255, 255, .7);
+}
+
+h5 {
+    color: rgba(255, 255, 255, .7);
+}
+
+h4 {
+    color: rgba(255, 255, 255, .7);
+}
+
+span {
+    color: rgba(255, 255, 255, .7);
+}
+
+div {
+    color: rgba(255, 255, 255, .7);
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.caseName {
+    background-color: #1f2023;
+    border: 1px solid #2d2f34;
+    border-radius: 10px;
+    color: white;
+    opacity: 90%;
+    width: 369px;
+    height: 50px;
+    font-size: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: .3s;
+}
+
+.caseName:hover {
+    background-color: #1f2023;
+    border: 1px solid #2d2f34;
+    color: white;
+    opacity: 90%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+    transition: .3s;
+}
+
+.caseName:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+}
+
+.modalDarkTheme {
+    background-color: #1f2023;
+    border: #010101;
+}
+
+.background {
+    background-color: #27292d;
+}
+
+.plus {
+    width: 150px;
+    height: 150px;
+    opacity: 70%;
+    transition: .2s;
+}
+
+.plus:hover {
+    width: 155px;
+    height: 155px;
+    transition: .2s;
+}
+
+.modal_button {
+    width: 150px;
+    height: 150px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 50px;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: .2s;
+}
+
+.modal_button:hover {
+    width: 155px;
+    height: 155px;
+    margin-bottom: 45px;
+    transition: .2s;
+}
+
+.selectCase {
+    width: 150px;
+    height: 115px;
+    transform: translate(0, 50%);
+    transition: .2s;
+}
+
+.selectCase:hover {
+    width: 155px;
+    height: 119px;
+    transition: .2s;
+}
+
+.chooseItemTitle {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.caseImage {
+    padding: 20px;
+}
+
+.hoverCase:hover {
+    cursor: pointer;
+    background-color: #1f2023;
+    opacity: 90%;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(10, 10, 10, .7);
+}
+
+.createCaseForm {
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.itemBox {
+    background-color: #1f2023;
+    height: 500px;
+    margin-top: 20px;
+    width: 700px;
+    border-radius: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.line {
+    background-color: #010101;
+    margin-top: 50px;
+    height: 1px;
+}
+
+.itemImg {
+    width: 120px;
+    height: 92px;
+    cursor: pointer;
+}
+
+.item {
+    width: 150px;
+    height: 120px;
+    padding: 20px;
+    text-align: center;
+}
+
+.itemPrice {
+    color: #7ed321;
+    opacity: 80%;
+    transform: skew(-15deg);
+}
+.itemName {
+    transform: skew(-15deg);
+}
