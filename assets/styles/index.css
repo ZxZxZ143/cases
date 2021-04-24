@@ -30,30 +30,17 @@ div {
 
 .caseName {
     background-color: #1f2023;
-    border: 1px solid #2d2f34;
-    border-radius: 10px;
+    border: none;
     color: white;
     opacity: 90%;
-    width: 369px;
-    height: 50px;
+    width: 355px;
+    height: 40px;
     font-size: 30px;
     margin-left: auto;
     margin-right: auto;
-    transition: .3s;
-}
-
-.caseName:hover {
-    background-color: #1f2023;
-    border: 1px solid #2d2f34;
-    color: white;
-    opacity: 90%;
-    box-shadow: 0 0 5px rgba(0, 0, 0, .3);
-    transition: .3s;
-}
-
-.caseName:focus {
+    padding-bottom: 3px;
     outline: none;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+    box-sizing: border-box;
 }
 
 .modalDarkTheme {
@@ -136,6 +123,9 @@ div {
 }
 
 .itemBox {
+    position: relative;
+    left: 50%;
+    transform: translate(-48.5%, 0);
     background-color: #1f2023;
     height: 500px;
     margin-top: 20px;
@@ -148,19 +138,23 @@ div {
 .line {
     background-color: #010101;
     margin-top: 50px;
+    width: 1000px;
     height: 1px;
+    border-radius: 50%;
 }
 
 .itemImg {
     width: 120px;
     height: 92px;
-    cursor: pointer;
+    margin-top: 5px;
 }
 
 .item {
     width: 150px;
-    height: 120px;
-    padding: 20px;
+    height: 170px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    cursor: pointer;
     text-align: center;
 }
 
@@ -169,6 +163,94 @@ div {
     opacity: 80%;
     transform: skew(-15deg);
 }
+
 .itemName {
     transform: skew(-15deg);
+}
+
+.caseNameBlock {
+    background-color: #1f2023;
+    border: 1px solid #2d2f34;
+    border-radius: 10px;
+    width: 369px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    transition: .3s;
+}
+
+.caseNameBlock:hover {
+    background-color: #1f2023;
+    border: 1px solid #2d2f34;
+    color: white;
+    opacity: 90%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+    transition: .3s;
+}
+
+.caseNameBlock:focus {
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+}
+
+.selectItem {
+    border: 1px solid rgba(255, 255, 255, .8);
+    border-radius: 10%;
+    box-shadow: 0 0 10px rgba(100, 100, 100, .8);
+}
+
+.blue {
+    background-color: blue;
+    border-radius: 10%;
+    transition-duration: 0.3s;
+}
+
+.blue:hover {
+    box-shadow: 0 0 30px 0 rgba(0, 0, 255, .8);
+    transition-duration: 0.3s;
+}
+
+.purple {
+    background-color: rgb(108, 50, 178);
+    border-radius: 10%;
+    transition-duration: 0.3s;
+}
+
+.purple:hover {
+    box-shadow: 0 0 30px 0 rgba(108, 50, 178, .8);
+    transition-duration: 0.3s;
+}
+
+.pink {
+    background-color: #ff1aff;
+    border-radius: 10%;
+    transition-duration: 0.3s;
+}
+
+.pink:hover {
+    box-shadow: 0 0 30px 0 rgba(255, 26, 255, .8);
+    transition-duration: 0.3s;
+}
+
+.red {
+    background-color: red;
+    border-radius: 10%;
+    transition-duration: 0.3s;
+}
+
+.red:hover {
+    box-shadow: 0 0 30px 0 rgba(255, 0, 0, .8);
+    transition-duration: 0.3s;
+}
+
+.yellow {
+    background-color: yellow;
+    border-radius: 10%;
+    transition-duration: 0.3s;
+}
+
+.yellow:hover {
+    box-shadow: 0 0 30px 0 rgba(255, 255, 0, .8);
+    transition-duration: 0.3s;
 }

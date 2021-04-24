@@ -1,7 +1,7 @@
 let cases;
 
 $.ajax({
-    url: "backend/prefs/cases.txt",
+    url: "../../backend/prefs/cases.txt",
     success: (data) => {
         cases = data.split(".png");
 
@@ -19,7 +19,7 @@ $.ajax({
                 selectCaseImage($(event.currentTarget).data('caseImg'));
             });
 
-            $(img).attr('src', 'assets/img/cases/' + cases[i] + '.png');
+            $(img).attr('src', '../img/cases/' + cases[i] + '.png');
             $(img).addClass('hoverCase');
             $(img).attr('data-dismiss', 'modal');
 
@@ -46,5 +46,5 @@ function selectCaseImage(caseImgName) {
 
     $('.selectCase').removeClass('plus');
 
-    $('.selectCase').attr('src', 'assets/img/cases/' + caseImgName + '.png');
+    $('.selectCase').attr('src', '../img/cases/' + caseImgName + '.png');
 }

@@ -21,7 +21,7 @@ if (empty($price)) {
 
 // todo делать проверки и вернуть ошибку, если данные не все или неправильные
 
-$stmt = $pdo->prepare('INSERT INTO items (item_name, rare, src, price) VALUES (:name, :rare, :src, :price)');
+$stmt = $pdo->prepare('INSERT INTO items (name, rare, src, price) VALUES (:name, :rare, :src, :price)');
 try {
     $stmt->execute([
         'name' => $name,

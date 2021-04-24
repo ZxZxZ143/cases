@@ -7,12 +7,12 @@ include "backend/db/pdo.php";
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="entities/cases.js"></script>
-    <script src="index.js"></script>
+    <script src="../../entities/cases.js"></script>
+    <script src="../scripts/index.js"></script>
 </head>
 <body>
 
-<form enctype="multipart/form-data" action="backend/api/add_item.php" method="post">
+<form enctype="multipart/form-data" action="../../backend/api/add_item.php" method="post">
     <p>item`s name <br>
     <input type="text" name="name" placeholder="M4A4 Howl">
     </p>
