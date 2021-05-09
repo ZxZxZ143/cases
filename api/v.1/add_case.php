@@ -1,6 +1,6 @@
 <?php
 
-require '../db/pdo.php';
+require '../../backend/db/pdo.php';
 
 $name = $_POST['name'] ?? null;
 $src = $_POST['src'] ?? null;
@@ -22,7 +22,7 @@ if (empty($price)) {
 if (empty($items)) {
     exit();
 } else {
-    $items = implode($items, " ");
+    $items = serialize($items);
 }
 
 $stmt = $pdo->prepare('INSERT INTO cases (case_name, src, price, items) VALUES (:name, :src, :price, :items)');

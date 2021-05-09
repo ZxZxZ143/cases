@@ -5,6 +5,6 @@ $result = $stmt->fetchAll();
 
 $result = json_encode($result);
 
-$file = fopen("../../backend/prefs/items.json", "w");
+$file = fopen("../../prefs/items.json", "w");
 fwrite($file, $result);
 fclose($file);
