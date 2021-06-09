@@ -1643,7 +1643,7 @@
      * @returns {Element} parent
      */
     function getParentNode(element) {
-        if (element.nodeName === 'HTML') {
+        if (element.nodeName === 'php') {
             return element;
         }
         return element.parentNode || element.host;
@@ -1663,7 +1663,7 @@
         }
 
         switch (element.nodeName) {
-            case 'HTML':
+            case 'php':
             case 'BODY':
                 return element.ownerDocument.body;
             case '#document':
@@ -1738,7 +1738,7 @@
 
         var nodeName = offsetParent && offsetParent.nodeName;
 
-        if (!nodeName || nodeName === 'BODY' || nodeName === 'HTML') {
+        if (!nodeName || nodeName === 'BODY' || nodeName === 'php') {
             return element ? element.ownerDocument.documentElement : document.documentElement;
         }
 
@@ -1757,7 +1757,7 @@
         if (nodeName === 'BODY') {
             return false;
         }
-        return nodeName === 'HTML' || getOffsetParent(element.firstElementChild) === element;
+        return nodeName === 'php' || getOffsetParent(element.firstElementChild) === element;
     }
 
     /**
@@ -1833,7 +1833,7 @@
         var upperSide = side === 'top' ? 'scrollTop' : 'scrollLeft';
         var nodeName = element.nodeName;
 
-        if (nodeName === 'BODY' || nodeName === 'HTML') {
+        if (nodeName === 'BODY' || nodeName === 'php') {
             var html = element.ownerDocument.documentElement;
             var scrollingElement = element.ownerDocument.scrollingElement || html;
             return scrollingElement[upperSide];
@@ -2002,7 +2002,7 @@
         };
 
         // subtract scrollbar size from sizes
-        var sizes = element.nodeName === 'HTML' ? getWindowSizes(element.ownerDocument) : {};
+        var sizes = element.nodeName === 'php' ? getWindowSizes(element.ownerDocument) : {};
         var width = sizes.width || element.clientWidth || result.width;
         var height = sizes.height || element.clientHeight || result.height;
 
@@ -2027,7 +2027,7 @@
         var fixedPosition = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
         var isIE10 = isIE(10);
-        var isHTML = parent.nodeName === 'HTML';
+        var isHTML = parent.nodeName === 'php';
         var childrenRect = getBoundingClientRect(children);
         var parentRect = getBoundingClientRect(parent);
         var scrollParent = getScrollParent(children);
@@ -2051,7 +2051,7 @@
         offsets.marginLeft = 0;
 
         // Subtract margins of documentElement in case it's being used as parent
-        // we do this only on HTML because it's the only element that behaves
+        // we do this only on php because it's the only element that behaves
         // differently when margins are applied to it. The margins are included in
         // the box of the documentElement, in the other cases not.
         if (!isIE10 && isHTML) {
@@ -2106,7 +2106,7 @@
      */
     function isFixed(element) {
         var nodeName = element.nodeName;
-        if (nodeName === 'BODY' || nodeName === 'HTML') {
+        if (nodeName === 'BODY' || nodeName === 'php') {
             return false;
         }
         if (getStyleComputedProperty(element, 'position') === 'fixed') {
@@ -2177,8 +2177,8 @@
 
             var offsets = getOffsetRectRelativeToArbitraryNode(boundariesNode, offsetParent, fixedPosition);
 
-            // In case of HTML, we need a different computation
-            if (boundariesNode.nodeName === 'HTML' && !isFixed(offsetParent)) {
+            // In case of php, we need a different computation
+            if (boundariesNode.nodeName === 'php' && !isFixed(offsetParent)) {
                 var _getWindowSizes = getWindowSizes(popper.ownerDocument),
                     height = _getWindowSizes.height,
                     width = _getWindowSizes.width;
@@ -2710,7 +2710,7 @@
         setStyles(data.instance.popper, data.styles);
 
         // any property present in `data.attributes` will be applied to the popper,
-        // they will be set as HTML attributes of the element
+        // they will be set as php attributes of the element
         setAttributes(data.instance.popper, data.attributes);
 
         // if arrowElement is defined and arrowStyles has some properties
@@ -2728,7 +2728,7 @@
      * @method
      * @memberof Popper.modifiers
      * @param {HTMLElement} reference - The reference element used to position the popper
-     * @param {HTMLElement} popper - The HTML element used as popper
+     * @param {HTMLElement} popper - The php element used as popper
      * @param {Object} options - Popper.js options
      */
     function applyStyleOnLoad(reference, popper, options, modifierOptions, state) {
@@ -2854,7 +2854,7 @@
         if (sideA === 'bottom') {
             // when offsetParent is <html> the positioning is relative to the bottom of the screen (excluding the scrollbar)
             // and not the bottom of the html element
-            if (offsetParent.nodeName === 'HTML') {
+            if (offsetParent.nodeName === 'php') {
                 top = -offsetParent.clientHeight + offsets.bottom;
             } else {
                 top = -offsetParentRect.height + offsets.bottom;
@@ -2863,7 +2863,7 @@
             top = offsets.top;
         }
         if (sideB === 'right') {
-            if (offsetParent.nodeName === 'HTML') {
+            if (offsetParent.nodeName === 'php') {
                 left = -offsetParent.clientWidth + offsets.right;
             } else {
                 left = -offsetParentRect.width + offsets.right;
@@ -3996,7 +3996,7 @@
              * Creates a new Popper.js instance.
              * @class Popper
              * @param {Element|referenceObject} reference - The reference element used to position the popper
-             * @param {Element} popper - The HTML / XML element used as the popper
+             * @param {Element} popper - The php / XML element used as the popper
              * @param {Object} options - Your custom options to override the ones defined in [Defaults](#defaults)
              * @return {Object} instance - The generated Popper.js instance
              */

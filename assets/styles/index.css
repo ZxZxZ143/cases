@@ -1,31 +1,48 @@
-p {
+@keyframes scroll {
+    0% {
+        left: 0px;
+    }
+
+    100% {
+        left: -10000px;;
+    }
+}
+
+.link {
+    text-decoration: none;
     color: rgba(255, 255, 255, .7);
 }
 
-h1 {
+.link:hover {
+    text-decoration: none;
     color: rgba(255, 255, 255, .7);
 }
 
-h5 {
-    color: rgba(255, 255, 255, .7);
-}
-
-h4 {
-    color: rgba(255, 255, 255, .7);
-}
-
-span {
-    color: rgba(255, 255, 255, .7);
-}
-
-div {
-    color: rgba(255, 255, 255, .7);
-}
-
-.title {
+.createCaseTitle {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.title {
+    color: rgba(255, 255, 255, .7);
+    position: absolute;
+    left: 3%;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.title:hover {
+    color: rgba(255, 255, 255, .9);
+    transition: .2s;
+    text-shadow: 0 0 10px rgba(255, 255, 255, .7);
+}
+
+.header {
+    position: absolute;
+    width: 100%;
+    height: 60px;
+    top: 5%;
 }
 
 .caseName {
@@ -85,9 +102,10 @@ div {
 }
 
 .selectCase {
+    position: relative;
+    top: 0;
     width: 150px;
     height: 115px;
-    transform: translate(0, 50%);
     transition: .2s;
 }
 
@@ -130,6 +148,11 @@ div {
     height: 500px;
     width: 700px;
     border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: flex-start;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -163,13 +186,13 @@ div {
     width: 120px;
     height: 92px;
     margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 .item {
     width: 150px;
     height: 170px;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin: 10px;
     cursor: pointer;
     text-align: center;
 }
@@ -182,6 +205,7 @@ div {
 
 .itemName {
     transform: skew(-15deg);
+    text-align: center;
 }
 
 .caseNameBlock {
@@ -245,24 +269,279 @@ div {
     display: none;
 }
 
-.blue {
+.user {
+    position: absolute;
+    right: 2%;
+    display: flex;
+    align-items: center;
+    width: 250px;
+    height: 50px;
+}
+
+.avatar {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.balance {
+    position: relative;
+    width: 150px;
+    height: 20px;
+    margin-left: 10px;
+    font-family: Roboto, sans-serif;
+}
+
+.createCaseBody {
+    position: absolute;
+    top: 37%;
+    width: 90%;
+    right: 5%;
+}
+
+.createCase {
+    position: absolute;
+    right: 5%;
+    top: 120%;
+    cursor: pointer;
+    width: 100px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 5px;
+    transform: skew(-10deg);
+    transition: .3s;
+}
+
+.createCase:hover {
+    border: rgba(255, 255, 255, .7) solid 1px;
+    box-shadow: 0 0 1px 0 rgba(255, 255, 255, .7);
+    transition: .3s;
+}
+
+.headerLine {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    height: 1px;
+    left: 5%;
+    width: 90%;
+    bottom: -10%;
+    transform: skew(-15deg);
+    background-color: black;
+}
+
+.content {
+    position: absolute;
+    top: 37%;
+    width: 90%;
+    left: 5%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.nameCase {
+    font-size: 20px;
+    transform: skew(-5deg);
+}
+
+.casePrice {
+    font-size: 25px;
+    color: #ffdc00;
+    opacity: 90%;
+}
+
+.case {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    margin: 20px 33px 20px 33px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.case:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .7);
+    transition: .2s;
+}
+
+.case:active {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .7) inset;
+    transition: .2s;
+}
+
+.caseImg {
+    width: 250px;
+    height: 192px;
+}
+
+.casePageTitle {
+    transform: skew(-5deg);
+    margin-bottom: 5%;
+}
+
+.casePage {
+    position: absolute;
+    top: 37%;
+    right: 5%;
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+}
+
+.underline {
+    position: relative;
+    background-color: rgba(255, 255, 255, .8);
+    box-shadow: 0 0 30px rgba(255, 255, 255, .8);
+    transform: skew(-15deg);
+    height: 4px;
+    width: 130%;
+    right: 15%;
+}
+
+.itemsInCase {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 80%;
+    left: 10%;
+    align-content: stretch;
+    justify-content: space-around;
+    top: 130%;
+}
+
+.caseOpen {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 300px;
+}
+
+.imgCase {
+    width: 150px;
+    height: 115px;
+}
+
+.openCaseButton {
+    margin-top: 20%;
+    width: 250px;
+    background-color: #6dae01;
+    border-radius: 10px;
+    height: 50px;
+    font-size: 30px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    transform: skew(-15deg);
+    transition: .2s;
+}
+
+.openCaseButton:hover {
+    box-shadow: 0 0 10px 0 #6dae01;
+    transition: .2s;
+}
+
+.itemInCase {
+    display: flex;
+    width: 200px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.scrollHolder {
+    position: absolute;
+    white-space: nowrap;
+    overflow: hidden;
+    background: black;
+    height: 125px;
+    width: 550px;
+    border-radius: 10px;
+}
+
+#case_scroll {
+    position: absolute;
+    height: 125px;
+}
+
+.scrollAnimate {
+    animation-name: scroll;
+    animation-duration: 5.5s;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    transition-timing-function: cubic-bezier(1.000, -0.005, 0.000, 1.010);
+}
+
+.casePlace {
+    height: 150px;
+    width: 550px;
+    display: flex;
+    justify-content: center;
+}
+
+.itemImg_scroll {
+    width: 150px;
+    height: 115px;
+}
+
+.item_scroll {
+    display: inline-block;
+    width: 150px;
+    height: 115px;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+.triangleBottom {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 10px;
+    height: 10px;
+}
+
+.triangleTop {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    left: 50%;
+    top: -1px;
+    transform: rotate(180deg);
+}
+
+.Blue {
     background-color: blue;
     border-radius: 10%;
     transition-duration: 0.3s;
 }
 
-.blue:hover {
+.Blue:hover {
     box-shadow: 0 0 30px 0 rgba(0, 0, 255, .8);
     transition-duration: 0.3s;
 }
 
-.purple {
+.Purple {
     background-color: rgb(108, 50, 178);
     border-radius: 10%;
     transition-duration: 0.3s;
 }
 
-.purple:hover {
+.Purple:hover {
     box-shadow: 0 0 30px 0 rgba(108, 50, 178, .8);
     transition-duration: 0.3s;
 }

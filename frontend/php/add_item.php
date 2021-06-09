@@ -17,8 +17,8 @@ include "backend/db/pdo.php";
     <input type="text" name="name" placeholder="M4A4 Howl">
     </p>
     <p>item`s rare<br>
-    <input type="radio" name="rare">blue
-    <input type="radio" name="rare">purple
+    <input type="radio" name="rare">Blue
+    <input type="radio" name="rare">Purple
     <input type="radio" name="rare">pink
     <input type="radio" name="rare">red
     <input type="radio" name="rare">yellow

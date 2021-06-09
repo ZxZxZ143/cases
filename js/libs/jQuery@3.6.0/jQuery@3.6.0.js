@@ -77,7 +77,7 @@
     var isFunction = function isFunction( obj ) {
 
         // Support: Chrome <=57, Firefox <=52
-        // In some browsers, typeof returns "function" for HTML <object> elements
+        // In some browsers, typeof returns "function" for php <object> elements
         // (i.e., `typeof document.createElement( "object" ) === "function"`).
         // We don't want to classify *any* DOM node as a function.
         return typeof obj === "function" && typeof obj.nodeType !== "number";
@@ -768,7 +768,7 @@
                     return results;
                 }
 
-                // Try to shortcut find operations (as opposed to filters) in HTML documents
+                // Try to shortcut find operations (as opposed to filters) in php documents
                 if ( !seed ) {
                     setDocument( context );
                     context = context || document;
@@ -1105,16 +1105,16 @@
             /**
              * Detects XML nodes
              * @param {Element|Object} elem An element or a document
-             * @returns {Boolean} True iff elem is a non-HTML XML node
+             * @returns {Boolean} True iff elem is a non-php XML node
              */
             isXML = Sizzle.isXML = function( elem ) {
                 var namespace = elem.namespaceURI,
                     docElem = ( elem.ownerDocument || elem ).documentElement;
 
                 // Support: IE <=8
-                // Assume HTML when documentElement doesn't yet exist, such as inside loading iframes
+                // Assume php when documentElement doesn't yet exist, such as inside loading iframes
                 // https://bugs.jquery.com/ticket/4833
-                return !rhtml.test( namespace || docElem && docElem.nodeName || "HTML" );
+                return !rhtml.test( namespace || docElem && docElem.nodeName || "php" );
             };
 
             /**
@@ -3124,9 +3124,9 @@
 // A central reference to the root jQuery(document)
     var rootjQuery,
 
-        // A simple way to check for HTML strings
+        // A simple way to check for php strings
         // Prioritize #id over <tag> to avoid XSS via location.hash (#9521)
-        // Strict HTML recognition (#11290: must start with <)
+        // Strict php recognition (#11290: must start with <)
         // Shortcut simple #id case for speed
         rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]+))$/,
 
@@ -3142,13 +3142,13 @@
             // so migrate can support jQuery.sub (gh-2101)
             root = root || rootjQuery;
 
-            // Handle HTML strings
+            // Handle php strings
             if ( typeof selector === "string" ) {
                 if ( selector[ 0 ] === "<" &&
                     selector[ selector.length - 1 ] === ">" &&
                     selector.length >= 3 ) {
 
-                    // Assume that strings that start and end with <> are HTML and skip the regex check
+                    // Assume that strings that start and end with <> are php and skip the regex check
                     match = [ null, selector, null ];
 
                 } else {
@@ -8057,7 +8057,7 @@
             var name,
                 i = 0,
 
-                // Attribute names can contain non-HTML whitespace characters
+                // Attribute names can contain non-php whitespace characters
                 // https://html.spec.whatwg.org/multipage/syntax.html#attributes-2
                 attrNames = value && value.match( rnothtmlwhite );
 
@@ -8243,7 +8243,7 @@
 
 
 
-    // Strip and collapse whitespace according to HTML spec
+    // Strip and collapse whitespace according to php spec
     // https://infra.spec.whatwg.org/#strip-and-collapse-ascii-whitespace
     function stripAndCollapse( value ) {
         var tokens = value.match( rnothtmlwhite ) || [];

@@ -1,25 +1,26 @@
-let cases;
+let casesImg;
+let src;
 
 $.ajax({
     url: "../../prefs/cases.txt",
     success: (data) => {
-        cases = data.split(".png");
+        casesImg = data.split(".png");
 
-        cases.pop();
+        casesImg.pop();
 
-        for (let i = 0; i < cases.length; i++) {
+        for (let i = 0; i < casesImg.length; i++) {
 
             let img = document.createElement('img');
             let div = document.createElement('div');
             $(div).css('display', 'inline-block');
 
-            $(div).data('caseImg', cases[i]);
+            $(div).data('caseImg', casesImg[i]);
 
             $(div).click(event => {
                 selectCaseImage($(event.currentTarget).data('caseImg'));
             });
 
-            $(img).attr('src', '../../assets/img/cases/' + cases[i] + '.png');
+            $(img).attr('src', '../../assets/img/cases/' + casesImg[i] + '.png');
             $(img).addClass('hoverCase');
             $(img).attr('data-dismiss', 'modal');
 
@@ -48,5 +49,5 @@ function selectCaseImage(caseImgName) {
 
     $('.selectCase').attr('src', '../../assets/img/cases/' + caseImgName + '.png');
 
-    $('.src').attr('value', caseImgName + '.png');
+    src = caseImgName + '.png';
 }
