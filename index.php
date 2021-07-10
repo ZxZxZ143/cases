@@ -60,5 +60,9 @@ include 'backend/includes/header.php';
         $(div).append(price);
     });
 
-    $('.avatar').attr('src', 'assets/img/UI/icon.png');
+    $('.avatar').attr('src', 'assets/img/UI/account_circle.svg');
+    $('.registration').attr('href', 'frontend/php/registration.php');
+    $('.logOn').attr('href', 'frontend/php/log_on.php');
+    $('.createCaseButton').attr('href', 'frontend/php/create_case.php');
+
 </script>

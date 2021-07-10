@@ -23,7 +23,7 @@ include '../../backend/includes/items/itemFromDB.php';
 <div class="createCaseBody">
     <h1 class="createCaseTitle">Создайте свой кейс</h1>
     <div class="alert-success alert fade hide" role="alert" style="position: fixed; top: 5%; right: 2.5%; z-index: 1"
-         data-delay="3000" data-autohide="true">
+               data-delay="3000" data-autohide="true">
         <strong class="successAlertText"></strong>
     </div>
 

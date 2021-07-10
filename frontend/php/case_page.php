@@ -65,7 +65,9 @@ if ($result->items) {
         <div class="casePlace">
             <img class="imgCase">
         </div>
-        <div class="openCaseButton" onclick="openCase()">Открыть кейс</div>
+        <div class="buttonPlace">
+        <div class="button" onclick="openCase()">Открыть за </div>
+        </div>
     </div>
     <div class="itemsInCase"></div>
 </div>
@@ -95,6 +97,8 @@ if ($result->items) {
         },
     });
 
+    $('.button').html('открыть за ' + container.price + ' &#8381');
+
     $('.name').html(container.name);
 
     $('.imgCase').attr('src', '../../assets/img/cases/' + container.src);
@@ -104,12 +108,12 @@ if ($result->items) {
     fillItemsInCase(items);
 
     function openCase() {
+        removeInterfaceBeforeOpenCase();
+
         let div = document.createElement('div');
         let scrollHolder = document.createElement('div');
         let triangleBottom = document.createElement('img');
         let triangleTop = document.createElement('img');
-
-        removeInterfaceBeforeOpenCase();
 
         $(scrollHolder).addClass('scrollHolder');
         $(triangleBottom).addClass('triangleBottom');
@@ -172,13 +176,32 @@ if ($result->items) {
         let animation = document.getElementById('case_scroll');
 
         animation.onanimationend = function() {
-            console.log(itemNum);
+            let div = document.createElement('div');
+            let name = document.createElement('div');
+            let reopen = document.createElement('div');
+            let sellItem = document.createElement('div');
+
+            $(name).html(items[itemNum].name);
+            $(reopen).html('попробовать ещё');
+            $(sellItem).html('продать за ' + items[itemNum].price + ' &#8381');
+
+            $(reopen).attr('onclick', ' openCase()');
+
+            $(div).addClass('prizeName');
+            $(reopen).addClass('button');
+            $(sellItem).addClass('button');
+
+            $('.buttonPlace').append(reopen).append(sellItem);
+            $('.caseOpen').append(div);
+            $(div).append(name);
         };
     }
 
     function removeInterfaceBeforeOpenCase() {
         $('.imgCase').remove();
-        $('.openCaseButton').remove();
+        $('.button').remove();
+        $('.scrollHolder').remove();
+        $('.prizeName').remove();
     }
 
     function fillItemsInCase(items) {

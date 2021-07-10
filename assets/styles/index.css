@@ -265,14 +265,11 @@
     transition: .3s;
 }
 
-.invisibleInput {
-    display: none;
-}
-
 .user {
     position: absolute;
     right: 2%;
     display: flex;
+    justify-content: space-evenly;
     align-items: center;
     width: 250px;
     height: 50px;
@@ -286,11 +283,59 @@
 }
 
 .balance {
-    position: relative;
-    width: 150px;
+    position: absolute;
+    display: flex;
+    top: 50%;
     height: 20px;
-    margin-left: 10px;
     font-family: Roboto, sans-serif;
+    left: 22%;
+    border: 1px solid rgba(109, 174, 1, .45);
+    border-radius: 5px;
+    transform: skew(-5grad);
+    align-items: center;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.balance:hover {
+    border: 1px solid rgba(109, 174, 1, .9);
+    box-shadow: 0 0 5px 0 rgba(109, 174, 1, .7);
+    transition: .2s;
+}
+
+.balance:hover .fillBalance {
+    display: flex;
+    background-color: rgba(109, 174, 1, .9);
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: space-around;
+    font-weight: bold;
+    transition: .2s;
+}
+
+.fillBalance:before {
+    content: "+";
+    display: flex;
+    background-color: rgba(109, 174, 1, .8);
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: space-around;
+    font-weight: bold;
+    transition: .2s;
+}
+
+.userName {
+    font-family: Roboto, sans-serif;
+    position: absolute;
+    top: 2px;
+    width: 50px;
+    height: 11px;
+    font-size: 11px;
+    left: 22%;
 }
 
 .createCaseBody {
@@ -310,15 +355,16 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    border: rgba(255, 255, 255, .0) solid 1px;
     border-radius: 5px;
     transform: skew(-10deg);
-    transition: .3s;
+    transition: .2s;
 }
 
 .createCase:hover {
     border: rgba(255, 255, 255, .7) solid 1px;
     box-shadow: 0 0 1px 0 rgba(255, 255, 255, .7);
-    transition: .3s;
+    transition: .2s;
 }
 
 .headerLine {
@@ -356,6 +402,8 @@
 }
 
 .case {
+    position: relative;
+    top: 0;
     width: 300px;
     height: 300px;
     display: flex;
@@ -371,6 +419,7 @@
 
 .case:hover {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, .7);
+    top: -20px;
     transition: .2s;
 }
 
@@ -435,21 +484,25 @@
     height: 115px;
 }
 
-.openCaseButton {
-    margin-top: 20%;
+.button {
+    display: flex;
     width: 250px;
     background-color: #6dae01;
     border-radius: 10px;
     height: 50px;
-    font-size: 30px;
+    font-size: 25px;
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
     transform: skew(-15deg);
     transition: .2s;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
 }
 
-.openCaseButton:hover {
+.button:hover {
     box-shadow: 0 0 10px 0 #6dae01;
     transition: .2s;
 }
@@ -522,6 +575,212 @@
     left: 50%;
     top: -1px;
     transform: rotate(180deg);
+}
+
+.buttonPlace {
+    margin-top: 7%;
+    display: flex;
+    width: 900px;
+    height: 50px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+.prizeName {
+    display: flex;
+    position: absolute;
+    margin-top: 15%;
+    font-size: 30px;
+}
+
+.registration_form {
+    display: flex;
+    position: absolute;
+    top: 37%;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.registration_title {
+    font-size: 50px;
+    margin-bottom: 70px;
+}
+
+.registration_input {
+    width: 280px;
+    height: 40px;
+    background-color: #27292d;
+    border: 1px solid #010101;
+    border-radius: 5px;
+    outline: none;
+    color: #ffffff;
+    opacity: 70%;
+    font-size: 20px;
+}
+
+.registration_input:focus {
+    border: 1px solid #0066cc;
+}
+
+.registration_inputDiv {
+    display: flex;
+    position: relative;
+    margin-bottom: 15%;
+    border: none;
+    width: 280px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+label {
+    position: absolute;
+    left: 3%;
+    top: 8%;
+    background-color: #27292d;
+    color: rgba(255, 255, 255, .3);
+    font-size: 20px;
+    font-weight: normal;
+    pointer-events: none;
+    transition: .2s;
+}
+
+.registration_input:focus ~ label, .registration_input:valid ~ label {
+    top: -35%;
+    font-size: 15px;
+    height: 15px;
+    color: rgba(255, 255, 255, .6);
+    transition: .2s;
+}
+
+.visibility {
+    position: absolute;
+    opacity: 50%;
+    top: 7px;
+    right: 3%;
+}
+
+.registration_button {
+    border: none;
+    border-radius: 10px;
+    background-color: #010101;
+    color: rgba(255, 255, 255, .7);
+    height: 30px;
+    width: 150px;
+    font-size: 20px;
+    opacity: 70%;
+    margin-bottom: 50px;
+    transition: .2s;
+}
+
+.registration_button:hover {
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, .8);
+    transition: .2s;
+}
+
+.registration_button:active {
+    box-shadow: inset 0 0 40px 0 rgba(50, 50, 50, .8);
+}
+
+.registration_border {
+    display: flex;
+    position: absolute;
+    border: 1px solid #010101;
+    height: 650px;
+    width: 40%;
+    border-radius: 10px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+.logOn_form {
+    display: flex;
+    position: absolute;
+    top: 37%;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.logOn_title {
+    font-size: 50px;
+    margin-bottom: 70px;
+}
+
+.logOn_input {
+    width: 280px;
+    height: 40px;
+    background-color: #27292d;
+    border: 1px solid #010101;
+    border-radius: 5px;
+    outline: none;
+    color: #ffffff;
+    opacity: 70%;
+    font-size: 20px;
+}
+
+.logOn_input:focus {
+    border: 1px solid #0066cc;
+}
+
+.logOn_inputDiv {
+    display: flex;
+    position: relative;
+    margin-bottom: 15%;
+    border: none;
+    width: 280px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+.logOn_input:focus ~ label, .logOn_input:valid ~ label {
+    top: -35%;
+    font-size: 15px;
+    height: 15px;
+    color: rgba(255, 255, 255, .6);
+    transition: .2s;
+}
+
+.logOn_button {
+    border: none;
+    border-radius: 10px;
+    background-color: #010101;
+    color: rgba(255, 255, 255, .7);
+    height: 30px;
+    width: 150px;
+    font-size: 20px;
+    opacity: 70%;
+    margin-bottom: 50px;
+    transition: .2s;
+}
+
+.logOn_button:hover {
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, .8);
+    transition: .2s;
+}
+
+.logOn_button:active {
+    box-shadow: inset 0 0 40px 0 rgba(50, 50, 50, .8);
+}
+
+.logOn_border {
+    display: flex;
+    position: absolute;
+    height: 450px;
+    width: 40%;
+    border-radius: 10px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .Blue {
