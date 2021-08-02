@@ -1,7 +1,6 @@
 <?php
 include 'backend/db/pdo.php';
 include 'backend/includes/cases/getCasesFromBd.php';
-include 'backend/includes/header.php';
 ?>
 
 <!DOCTYPE html>
@@ -16,6 +15,9 @@ include 'backend/includes/header.php';
     <script src="js/libs/bootstrap/bootstrap_bundle@4.6.0.js"></script>
     <script src="js/libs/bootstrap/bootstrap_popper@4.6.0.js"></script>
 </head>
+<?php
+include 'backend/includes/header.php';
+?>
 <body class="background">
 <div class="content" style="display: flex;"></div>
 </body>
@@ -30,7 +32,6 @@ include 'backend/includes/header.php';
             cases = data;
         }
     });
-
 
     cases.forEach(cases => {
         let a = document.createElement('a');
@@ -64,5 +65,5 @@ include 'backend/includes/header.php';
     $('.registration').attr('href', 'frontend/php/registration.php');
     $('.logOn').attr('href', 'frontend/php/log_on.php');
     $('.createCaseButton').attr('href', 'frontend/php/create_case.php');
-
+    $('.avatar').attr('src', 'assets/img/UI/' + user.avatar);
 </script>

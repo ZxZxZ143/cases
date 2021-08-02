@@ -1,6 +1,5 @@
 <?php
 include '../../backend/db/pdo.php';
-include '../../backend/includes/header.php';
 
 $url = ((!empty($_SERVER['HTTPS'])) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
@@ -56,6 +55,13 @@ if ($result->items) {
     <script src="../../js/entities/items.js"></script>
 </head>
 <body class="background">
+<?php
+include '../../backend/includes/header.php';
+?>
+<div class="alert-danger alert fade hide" role="alert" style="position: fixed; top: 5%; right: 2.5%; z-index: 1"
+     data-delay="3000" data-autohide="true">
+    <strong class="dangerAlertText"></strong>
+</div>
 <div class="casePage">
     <div class="casePageTitle">
         <h1 class="name">кейс</h1>
@@ -66,7 +72,7 @@ if ($result->items) {
             <img class="imgCase">
         </div>
         <div class="buttonPlace">
-        <div class="button" onclick="openCase()">Открыть за </div>
+            <div class="button" onclick="openCase()">Открыть за</div>
         </div>
     </div>
     <div class="itemsInCase"></div>
@@ -76,6 +82,7 @@ if ($result->items) {
 <script>
     let container;
     let items = [];
+    let userItem;
 
     $.ajax({
         url: '../../prefs/case.json',
@@ -108,34 +115,83 @@ if ($result->items) {
     fillItemsInCase(items);
 
     function openCase() {
-        removeInterfaceBeforeOpenCase();
+        if (user.balance > container.price || user.balance === container.price) {
+            removeInterfaceBeforeOpenCase();
 
-        let div = document.createElement('div');
-        let scrollHolder = document.createElement('div');
-        let triangleBottom = document.createElement('img');
-        let triangleTop = document.createElement('img');
+            let div = document.createElement('div');
+            let scrollHolder = document.createElement('div');
+            let triangleBottom = document.createElement('img');
+            let triangleTop = document.createElement('img');
 
-        $(scrollHolder).addClass('scrollHolder');
-        $(triangleBottom).addClass('triangleBottom');
-        $(triangleTop).addClass('triangleTop');
+            $(scrollHolder).addClass('scrollHolder');
+            $(triangleBottom).addClass('triangleBottom');
+            $(triangleTop).addClass('triangleTop');
 
-        $(div).attr('id', 'case_scroll');
-        $(triangleBottom).attr('src', '../../assets/img/UI/triangle.png');
-        $(triangleTop).attr('src', '../../assets/img/UI/triangle.png');
+            $(div).attr('id', 'case_scroll');
+            $(triangleBottom).attr('src', '../../assets/img/UI/triangle.png');
+            $(triangleTop).attr('src', '../../assets/img/UI/triangle.png');
 
-        $('.casePlace').append(scrollHolder);
-        $(scrollHolder).append(div).append(triangleBottom).append(triangleTop);
+            $('.casePlace').append(scrollHolder);
+            $(scrollHolder).append(div).append(triangleBottom).append(triangleTop);
 
-        fillCase(div);
+            fillCase(div);
 
-        startAnimation(div);
+            startAnimation(div);
+
+            $.ajax({
+                url: '../../api/v.1/user_items.php',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    item: items[userItem].src + '.png',
+                }
+            })
+
+            user.balance -= container.price;
+            $('.money').html(user.balance + ' &#8381');
+            $.ajax({
+                url: '../../api/v.1/user_balance.php',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    balance: user.balance,
+                }
+            })
+        } else {
+            $('.dangerAlertText').text('Недостаточно средств');
+            $('.alert-danger').toast('show');
+        }
+    }
+
+    function sellItem() {
+        user.balance += items[userItem].price;
+        $('.money').html(user.balance + ' &#8381');
+        $.ajax({
+            url: '../../api/v.1/user_balance.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                balance: user.balance,
+            }
+        })
+
+        $.ajax({
+            url: '../../api/v.1/user_items.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                sellLastItem: 'yes',
+            }
+        })
+
+        $('.sellItem').remove();
     }
 
     function fillCase(itemsPlace) {
         for (let i = 0; i < 70; i++) {
             let img = document.createElement('img');
             let div = document.createElement('div');
-            let itemNum = Math.floor(Math.random() * items.length);
+            let itemNum = randomItem(items);
 
             $(img).addClass('itemImg_scroll');
             $(div).addClass('item_scroll');
@@ -160,7 +216,8 @@ if ($result->items) {
             }
 
             if (i === 66) {
-               endAnimation(itemNum);
+                userItem = itemNum;
+                endAnimation(itemNum);
             }
 
             $(itemsPlace).append(div);
@@ -175,7 +232,7 @@ if ($result->items) {
     function endAnimation(itemNum) {
         let animation = document.getElementById('case_scroll');
 
-        animation.onanimationend = function() {
+        animation.onanimationend = function () {
             let div = document.createElement('div');
             let name = document.createElement('div');
             let reopen = document.createElement('div');
@@ -186,10 +243,11 @@ if ($result->items) {
             $(sellItem).html('продать за ' + items[itemNum].price + ' &#8381');
 
             $(reopen).attr('onclick', ' openCase()');
+            $(sellItem).attr('onclick', 'sellItem()');
 
             $(div).addClass('prizeName');
             $(reopen).addClass('button');
-            $(sellItem).addClass('button');
+            $(sellItem).addClass('button sellItem');
 
             $('.buttonPlace').append(reopen).append(sellItem);
             $('.caseOpen').append(div);
@@ -226,5 +284,67 @@ if ($result->items) {
 
     function sortArrByItemRare(arr) {
         return arr.sort((a, b) => a.rare > b.rare ? 1 : -1);
+    }
+
+    function randomItem(arr) {
+        let minPriceCount = 0;
+        let lowPriceCount = 0;
+        let midPriceCount = 0;
+        let maxPriceCount = 0;
+
+        arr = arr.sort((a, b) => a.price > b.price ? 1 : -1);
+
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].price < container.price / 2 && arr[i].rare !== 'yellow') {
+                minPriceCount++;
+            }
+            if (arr[i].price < container.price && arr[i].price > container.price / 2 && arr[i].rare !== 'yellow') {
+                lowPriceCount++;
+            }
+            if (arr[i].price > container.price && arr[i].price < container.price * 2 && arr[i].rare !== 'yellow') {
+                midPriceCount++;
+            }
+            if (arr[i].price > container.price * 2 && arr[i].rare !== 'yellow') {
+                maxPriceCount++;
+            }
+        }
+
+        minPriceCount -= 1;
+        lowPriceCount += minPriceCount;
+        midPriceCount += lowPriceCount;
+        maxPriceCount += midPriceCount;
+
+        let randomNum = Math.floor(Math.random() * 1000);
+
+        if (arr[arr.length - 1].rare === 'yellow') {
+            if (randomNum < 400) {
+                return Math.floor(Math.random() * (minPriceCount - 0 + 1)) + 0;
+            }
+            if (randomNum > 399 && randomNum < 700) {
+                return Math.floor(Math.random() * (lowPriceCount - minPriceCount + 1)) + minPriceCount;
+            }
+            if (randomNum > 699 && randomNum < 900) {
+                return Math.floor(Math.random() * (midPriceCount - lowPriceCount + 1)) + lowPriceCount;
+            }
+            if (randomNum > 899 && randomNum < 997) {
+                return Math.floor(Math.random() * (maxPriceCount - midPriceCount + 1)) + midPriceCount;
+            }
+            if (randomNum > 996) {
+                return Math.floor(Math.random() * (arr.length - 1 - maxPriceCount + 1)) + maxPriceCount;
+            }
+        } else {
+            if (randomNum < 400) {
+                return Math.floor(Math.random() * (minPriceCount - 0 + 1)) + 0;
+            }
+            if (randomNum > 399 && randomNum < 700) {
+                return Math.floor(Math.random() * (lowPriceCount - minPriceCount + 1)) + minPriceCount;
+            }
+            if (randomNum > 699 && randomNum < 900) {
+                return Math.floor(Math.random() * (midPriceCount - lowPriceCount + 1)) + lowPriceCount;
+            }
+            if (randomNum > 899) {
+                return Math.floor(Math.random() * (maxPriceCount - midPriceCount + 1)) + midPriceCount;
+            }
+        }
     }
 </script>

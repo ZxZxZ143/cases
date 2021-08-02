@@ -1,6 +1,5 @@
 <?php
 include '../../backend/db/pdo.php';
-include '../../backend/includes/header.php';
 ?>
 
 <!DOCTYPE html>
@@ -16,6 +15,7 @@ include '../../backend/includes/header.php';
     <script src="../../js/libs/bootstrap/bootstrap_popper@4.6.0.js"></script>
 </head>
 <body class="background">
+<?php include '../../backend/includes/header.php';?>
 <div class="alert-success alert fade hide" role="alert" style="position: fixed; top: 5%; right: 2.5%; z-index: 1"
      data-delay="3000" data-autohide="true">
     <strong class="successAlertText"></strong>
@@ -89,8 +89,9 @@ include '../../backend/includes/header.php';
             },
             dataType: 'json',
             success: (data) => {
-                $('.successAlertText').html(data.status);
+                $('.successAlertText').text(data.status);
                 $('.alert-success').toast('show');
+                document.location.replace("http://localhost/bestcases.kz/");
             },
             error: (xhr) => {
                 let data = JSON.parse(xhr.responseText);

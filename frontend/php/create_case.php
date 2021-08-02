@@ -18,12 +18,13 @@ include '../../backend/includes/items/itemFromDB.php';
     <script src="../../js/entities/items.js"></script>
 </head>
 <body class="background">
-<?php include '../../backend/includes/header.php'; ?>
-
+<?php
+include '../../backend/includes/header.php';
+?>
 <div class="createCaseBody">
     <h1 class="createCaseTitle">Создайте свой кейс</h1>
     <div class="alert-success alert fade hide" role="alert" style="position: fixed; top: 5%; right: 2.5%; z-index: 1"
-               data-delay="3000" data-autohide="true">
+         data-delay="3000" data-autohide="true">
         <strong class="successAlertText"></strong>
     </div>
 
@@ -82,7 +83,7 @@ include '../../backend/includes/items/itemFromDB.php';
 
 
     let items = [];
-    let casePrice = 0;
+    let casePrice = 50;
     let itemsInCase = [];
     let value = [];
     let caseName;
@@ -152,51 +153,85 @@ include '../../backend/includes/items/itemFromDB.php';
 
                 if (event.currentTarget.className !== 'item selectItem') {
                     $(event.currentTarget).addClass('selectItem');
-                    switch (item.rare) {
-                        case 'blue':
-                            casePrice += item.price * .6;
-                            break;
-                        case 'purple':
-                            casePrice += item.price * .4;
-                            break;
-                        case 'pink':
-                            casePrice += item.price * .3;
-                            break;
-                        case 'red':
-                            casePrice += item.price * .2;
-                            break;
-                        case 'yellow':
-                            casePrice += item.price * .08;
-                            break;
+
+                    if (casePrice / 2 + 1 > item.price  && item.rare !== 'yellow') {
+                        casePrice -= item.price * .5;
+                    }
+                    if (casePrice / 2 - 1 < item.price && casePrice > item.price  && item.rare !== 'yellow') {
+                        casePrice -= item.price * .2;
+                    }
+                    if (casePrice * 2 + 1 > item.price && casePrice < item.price  && item.rare !== 'yellow') {
+                        casePrice += item.price * .1;
+                    }
+                    if (casePrice * 2 + 1 < item.price  && item.rare !== 'yellow') {
+                        casePrice += item.price * .4;
+                    }
+
+                    if (casePrice / 2 + 1 > item.price  && item.rare === 'yellow') {
+                        casePrice -= item.price * .04;
+                    }
+                    if (casePrice / 2 - 1 < item.price && casePrice > item.price  && item.rare === 'yellow') {
+                        casePrice -= item.price * .01;
+                    }
+                    if (casePrice * 2 + 1 > item.price && casePrice < item.price  && item.rare === 'yellow') {
+                        casePrice += item.price * .01;
+                    }
+                    if (casePrice * 2 + 1 < item.price  && item.rare === 'yellow') {
+                        casePrice += item.price * .04;
+                    }
+
+                    if (document.getElementsByClassName('selectItem').length < 3) {
+                        $('.itemBox').tooltip('enable');
+                        $('.itemBox').tooltip('show');
+
+                        $('.price').html('Стоимость кейса: ' + 0 + ' &#8381');
+                    } else {
+                        $('.itemBox').tooltip('hide');
+                        $('.itemBox').tooltip('disable');
+
+                        $('.price').html('Стоимость кейса: ' + Math.round(casePrice) + ' &#8381');
                     }
 
                     itemsInCase.push($(event.currentTarget).attr('value'));
-
-                    if (itemsInCase.length < 3) {
-                        $('.itemBox').tooltip('enable');
-                        $('.itemBox').tooltip('show')
-                    } else {
-                        $('.itemBox').tooltip('hide');
-                        $('.itemBox').tooltip('disable')
-                    }
                 } else {
                     $(event.currentTarget).removeClass('selectItem');
-                    switch (item.rare) {
-                        case 'blue':
-                            casePrice -= item.price * .6;
-                            break;
-                        case 'purple':
-                            casePrice -= item.price * .4;
-                            break;
-                        case 'pink':
-                            casePrice -= item.price * .3;
-                            break;
-                        case 'red':
-                            casePrice -= item.price * .2;
-                            break;
-                        case 'yellow':
-                            casePrice -= item.price * .08;
-                            break;
+
+                    if (casePrice / 2 + 1 > item.price  && item.rare !== 'yellow') {
+                        casePrice += item.price * .5;
+                    }
+                    if (casePrice / 2 - 1 < item.price && casePrice > item.price  && item.rare !== 'yellow') {
+                        casePrice += item.price * .2;
+                    }
+                    if (casePrice * 2 + 1 > item.price && casePrice < item.price  && item.rare !== 'yellow') {
+                        casePrice -= item.price * .1;
+                    }
+                    if (casePrice * 2 + 1 < item.price && item.rare !== 'yellow') {
+                        casePrice -= item.price * .4;
+                    }
+
+                    if (casePrice / 2 + 1 > item.price  && item.rare === 'yellow') {
+                        casePrice += item.price * .04;
+                    }
+                    if (casePrice / 2 - 1 < item.price && casePrice > item.price  && item.rare === 'yellow') {
+                        casePrice += item.price * .01;
+                    }
+                    if (casePrice * 2 + 1 > item.price && casePrice < item.price  && item.rare === 'yellow') {
+                        casePrice -= item.price * .01;
+                    }
+                    if (casePrice * 2 + 1 < item.price  && item.rare === 'yellow') {
+                        casePrice -= item.price * .04;
+                    }
+
+                    if (document.getElementsByClassName('selectItem').length < 3) {
+                        $('.itemBox').tooltip('enable');
+                        $('.itemBox').tooltip('show');
+
+                        $('.price').html('Стоимость кейса: ' + 0 + ' &#8381');
+                    } else {
+                        $('.itemBox').tooltip('hide');
+                        $('.itemBox').tooltip('disable');
+
+                        $('.price').html('Стоимость кейса: ' + Math.round(casePrice) + ' &#8381');
                     }
 
                     for (let i = 0; i < itemsInCase.length; i++) {
@@ -204,19 +239,7 @@ include '../../backend/includes/items/itemFromDB.php';
                             itemsInCase.splice(i, 1);
                         }
                     }
-
-                    if (itemsInCase.length < 3) {
-                        $('.itemBox').tooltip('enable');
-                        $('.itemBox').tooltip('show')
-                    } else {
-                        $('.itemBox').tooltip('hide');
-                        $('.itemBox').tooltip('disable')
-                    }
                 }
-
-                $('.price').html('Стоимость кейса: ' + Math.round(casePrice) + ' &#8381');
-
-                casePrice = Math.round(casePrice);
             });
 
             $('.itemBox').append(div);

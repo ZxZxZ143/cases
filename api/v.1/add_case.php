@@ -1,6 +1,5 @@
 <?php
-
-require '../../backend/db/pdo.php';
+include '../../backend/db/pdo.php';
 
 $name = $_POST['name'] ?? null;
 $src = $_POST['src'] ?? null;

@@ -36,6 +36,22 @@ try {
         'salt' => $salt
     ]);
 
+    $stmt = $pdo->prepare("SELECT login, name, balance, avatar, items FROM users WHERE login = '$login'");
+
+    $stmt->execute();
+    $user = $stmt->fetch();
+
+    $user['items'] = unserialize($user['items']);
+
+    for ($i = 0; $i < count($user['items']); $i++) {
+        setcookie("items[$i]", $user['items'][$i], 0, '/');
+    }
+
+    setcookie('login', $login, 0, '/');
+    setcookie('balance', $user['balance'], 0, '/');
+    setcookie('name', $user['name'], 0, '/');
+    setcookie('avatar', $user['avatar'], 0, '/');
+
     response(201, 'Пользователь создан');
 } catch (PDOException $exception) {
     switch ($exception->getCode()) {
