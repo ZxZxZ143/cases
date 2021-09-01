@@ -32,6 +32,10 @@ $stmt->execute();
 
 $items['items'] = unserialize($items['items']);
 
+for ($i = 0; $i < count($_COOKIE['items']); $i++) {
+    setcookie("items", '', -1, '/');
+}
+
 for ($i = 0; $i < count($items['items']); $i++) {
     setcookie("items[$i]", $items['items'][$i], 0, '/');
 }

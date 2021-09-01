@@ -336,6 +336,7 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .balance {
@@ -392,6 +393,7 @@
     height: 11px;
     font-size: 15px;
     left: 22%;
+    cursor: pointer;
 }
 
 .createCaseBody {
@@ -720,8 +722,7 @@ label {
     right: 3%;
 }
 
-.registration_button
-{
+.registration_button {
     border: none;
     border-radius: 10px;
     background-color: #010101;
@@ -755,6 +756,7 @@ label {
     justify-content: flex-start;
     align-items: center;
 }
+
 .logOn_form {
     display: flex;
     position: absolute;
@@ -840,44 +842,119 @@ label {
     align-items: center;
 }
 
-.inventory_user {
+.inventory_mainPart {
     position: absolute;
+    display: flex;
+    flex-direction: column;
     top: 37%;
-    left: 0;
-    width: 100%;
-    height: 300px;
+    left: 5%;
+    width: 90%;
+
+}
+
+.inventory_user {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100px;
 }
 
 .inventory_avatar {
-    position: absolute;
-    left: 3%;
     width: 100px;
     height: 100px;
 }
 
-.inventory_userName {
-    position: absolute;
-    top: 4%;
-    left: 10%;
+.inventory_name {
     font-size: 40px;
+    margin-left: 15px;
 }
 
 .changeName {
-    position: absolute;
-    top: 25%;
-    left: 110%;
     border: 1px solid black;
     width: 40px;
     height: 40px;
     border-radius: 5px;
     cursor: pointer;
+    transition: .2s;
+    margin-left: 10px;
+}
+
+.changeName:hover {
+    border: 1px solid rgba(200, 200, 200, .7);
+    transition: .2s;
 }
 
 .rename {
-    position: absolute;
     width: 35px;
     height: 35px;
     opacity: 70%;
-    top: 5%;
-    left: 5%;
+}
+
+.inventory_nameInput {
+    width: 280px;
+    height: 30px;
+    background-color: #27292d;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    opacity: 70%;
+    font-size: 23px;
+}
+
+
+.inventory_inputDiv {
+    display: flex;
+    position: relative;
+    border: 1px solid #010101;
+    border-radius: 5px;
+    margin-left: 15px;
+    width: 290px;
+    height: 40px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.inventory {
+    display: flex;
+    margin-top: 100px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.inventory_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+    height: 150px;
+    margin-left: 20px;
+    margin-bottom: 50px;
+}
+
+.inventory_itemImg {
+    width: 150px;
+    height: 113px;
+}
+
+.inventory_itemName {
+    margin-top: 10px;
+    font-size: 17px;
+}
+
+.inventory_itemPrice {
+    margin-top: 10px;
+    font-size: 17px;
+    color: #ffdc00;
+    opacity: 90%;
+}
+
+.inventory_sellButton {
+    position: relative;
+    z-index: 1;
+    top: -121%;
+    left: 25%;
+    cursor: pointer;
 }

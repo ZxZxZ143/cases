@@ -3,8 +3,8 @@
         <a href="http://localhost/bestcases.kz/index.php" class="link title"><h1>case simulator</h1></a>
     </div>
     <div class="logOnUser user" style="display: none">
-            <img src="../../assets/img/UI/account_circle.svg" alt="avatar" class="avatar">
-            <div class="userName">unknown</div>
+            <img src="../../assets/img/UI/account_circle.svg" alt="avatar" class="avatar" onclick="redirectToInventory()">
+            <div class="userName" onclick="redirectToInventory()">unknown</div>
         <div class="balance">
             <span style="margin-left: 5px; margin-right: 5px" class="money">2000 &#8381</span>
             <div class="fillBalance"></div>
@@ -31,11 +31,6 @@
                 echo $_COOKIE['balance'];
             }
             ?>',
-        'items': '<?php
-            if (isset($_COOKIE['items'])) {
-                echo json_encode($_COOKIE['items']);
-            }
-            ?>',
         'name': '<?php
             if (isset($_COOKIE['name'])) {
                 echo $_COOKIE['name'];
@@ -48,7 +43,6 @@
             ?>',
     };
 
-
     if (user.login !== '') {
         $('.unLogOnUser').attr('style', 'display: none');
         $('.logOnUser').attr('style', 'display: flex');
@@ -57,5 +51,9 @@
 
         $('.money').html(user.balance + ' &#8381');
         $('.userName').html(user.name);
+    }
+
+    function redirectToInventory() {
+        document.location.replace("http://localhost/bestcases.kz/frontend/php/inventory.php");
     }
 </script>
