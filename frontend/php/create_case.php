@@ -66,7 +66,20 @@ include '../../backend/includes/header.php';
                 <div style="width: 700px; margin-left: auto;margin-right: auto">
                     <div class="price">Стоимость кейса: 0 &#8381</div>
                     <div class="itemBox" data-toggle="tooltip" data-placement="right"
-                         title="кейс должен содержать минимум 3 предмета"></div>
+                         title="кейс должен содержать минимум 3 предмета">
+                        <div class="itemBox_header">
+                            <input class="itemBox_input">
+                            <div class="sort">
+                                <span>сортировка по: </span>
+                                <span class="sortByPrice">цене</span><img src="../../assets/img/UI/sort_down.svg"
+                                                                          class="arrow arrow_price">
+                                <span class="sortByRare">качеству</span><img src="../../assets/img/UI/sort_down.svg"
+                                                                             class="arrow arrow_rare">
+                                <span class="sortByName">названию</span><img src="../../assets/img/UI/sort_down.svg"
+                                                                             class="arrow arrow_name">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -79,14 +92,14 @@ include '../../backend/includes/header.php';
 </body>
 </html>
 <script>
-    // todo сделать фильтры
-
-
     let items = [];
     let casePrice = 50;
     let itemsInCase = [];
     let value = [];
     let caseName;
+    let sortByPrice = 'down';
+    let sortByRare = 'down';
+    let sortByName = 'down';
 
     $.ajax({
         url: "../../prefs/items.json",
@@ -141,7 +154,7 @@ include '../../backend/includes/header.php';
             $(name).addClass('itemName');
             $(price).addClass('itemPrice');
             $(img).addClass('itemImg');
-            $(img).addClass(item.rare);
+            $(img).addClass(item.rare.slice(1));
 
             $(img).attr('src', '../../assets/img/items/' + item.src + '.png');
             $(div).attr('value', item.src + '.png');
@@ -154,29 +167,29 @@ include '../../backend/includes/header.php';
                 if (event.currentTarget.className !== 'item selectItem') {
                     $(event.currentTarget).addClass('selectItem');
 
-                    if (casePrice / 2 + 1 > item.price  && item.rare !== 'yellow') {
+                    if (casePrice / 2 + 1 > item.price && item.rare !== 'yellow') {
                         casePrice -= item.price * .5;
                     }
-                    if (casePrice / 2 - 1 < item.price && casePrice > item.price  && item.rare !== 'yellow') {
+                    if (casePrice / 2 - 1 < item.price && casePrice > item.price && item.rare !== 'yellow') {
                         casePrice -= item.price * .2;
                     }
-                    if (casePrice * 2 + 1 > item.price && casePrice < item.price  && item.rare !== 'yellow') {
+                    if (casePrice * 2 + 1 > item.price && casePrice < item.price && item.rare !== 'yellow') {
                         casePrice += item.price * .1;
                     }
-                    if (casePrice * 2 + 1 < item.price  && item.rare !== 'yellow') {
+                    if (casePrice * 2 + 1 < item.price && item.rare !== 'yellow') {
                         casePrice += item.price * .4;
                     }
 
-                    if (casePrice / 2 + 1 > item.price  && item.rare === 'yellow') {
+                    if (casePrice / 2 + 1 > item.price && item.rare === 'yellow') {
                         casePrice -= item.price * .04;
                     }
-                    if (casePrice / 2 - 1 < item.price && casePrice > item.price  && item.rare === 'yellow') {
+                    if (casePrice / 2 - 1 < item.price && casePrice > item.price && item.rare === 'yellow') {
                         casePrice -= item.price * .01;
                     }
-                    if (casePrice * 2 + 1 > item.price && casePrice < item.price  && item.rare === 'yellow') {
+                    if (casePrice * 2 + 1 > item.price && casePrice < item.price && item.rare === 'yellow') {
                         casePrice += item.price * .01;
                     }
-                    if (casePrice * 2 + 1 < item.price  && item.rare === 'yellow') {
+                    if (casePrice * 2 + 1 < item.price && item.rare === 'yellow') {
                         casePrice += item.price * .04;
                     }
 
@@ -196,29 +209,29 @@ include '../../backend/includes/header.php';
                 } else {
                     $(event.currentTarget).removeClass('selectItem');
 
-                    if (casePrice / 2 + 1 > item.price  && item.rare !== 'yellow') {
+                    if (casePrice / 2 + 1 > item.price && item.rare !== 'yellow') {
                         casePrice += item.price * .5;
                     }
-                    if (casePrice / 2 - 1 < item.price && casePrice > item.price  && item.rare !== 'yellow') {
+                    if (casePrice / 2 - 1 < item.price && casePrice > item.price && item.rare !== 'yellow') {
                         casePrice += item.price * .2;
                     }
-                    if (casePrice * 2 + 1 > item.price && casePrice < item.price  && item.rare !== 'yellow') {
+                    if (casePrice * 2 + 1 > item.price && casePrice < item.price && item.rare !== 'yellow') {
                         casePrice -= item.price * .1;
                     }
                     if (casePrice * 2 + 1 < item.price && item.rare !== 'yellow') {
                         casePrice -= item.price * .4;
                     }
 
-                    if (casePrice / 2 + 1 > item.price  && item.rare === 'yellow') {
+                    if (casePrice / 2 + 1 > item.price && item.rare === 'yellow') {
                         casePrice += item.price * .04;
                     }
-                    if (casePrice / 2 - 1 < item.price && casePrice > item.price  && item.rare === 'yellow') {
+                    if (casePrice / 2 - 1 < item.price && casePrice > item.price && item.rare === 'yellow') {
                         casePrice += item.price * .01;
                     }
-                    if (casePrice * 2 + 1 > item.price && casePrice < item.price  && item.rare === 'yellow') {
+                    if (casePrice * 2 + 1 > item.price && casePrice < item.price && item.rare === 'yellow') {
                         casePrice -= item.price * .01;
                     }
-                    if (casePrice * 2 + 1 < item.price  && item.rare === 'yellow') {
+                    if (casePrice * 2 + 1 < item.price && item.rare === 'yellow') {
                         casePrice -= item.price * .04;
                     }
 
@@ -249,7 +262,41 @@ include '../../backend/includes/header.php';
         })
     }
 
+    $('.sortByRare').click(event => {
+        if (sortByRare === 'down') {
+            sortByRare = 'up';
+            $('.arrow_rare').attr('src', '../../assets/img/UI/sort_up.svg')
+        } else {
+            sortByRare = 'down';
+            $('.arrow_rare').attr('src', '../../assets/img/UI/sort_down.svg')
+        }
+    })
+
+    $('.sortByName').click(event => {
+        if (sortByName === 'down') {
+            sortByName = 'up';
+            $('.arrow_name').attr('src', '../../assets/img/UI/sort_up.svg')
+        } else {
+            sortByName = 'down';
+            $('.arrow_name').attr('src', '../../assets/img/UI/sort_down.svg')
+        }
+    })
+
+    $('.sortByPrice').click(event => {
+        if (sortByPrice === 'down') {
+            sortByPrice = 'up';
+            $('.arrow_price').attr('src', '../../assets/img/UI/sort_up.svg')
+        } else {
+            sortByPrice = 'down';
+            $('.arrow_price').attr('src', '../../assets/img/UI/sort_down.svg')
+        }
+    })
+
     function sortArrByItemRare(arr) {
+        return arr.sort((a, b) => a.rare > b.rare ? 1 : -1);
+    }
+
+    function sortArrByParams(arr) {
         return arr.sort((a, b) => a.rare > b.rare ? 1 : -1);
     }
 </script>

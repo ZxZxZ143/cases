@@ -17,16 +17,16 @@ try {
 
     if (!empty($result)) {
         if ($result['password'] === sha1($password . $result['salt'])) {
-            $stmt = $pdo->prepare("SELECT login, name, balance, avatar, items FROM users WHERE login = '$result[login]'");
+            $stmt = $pdo->prepare("SELECT login, name, balance, avatar FROM users WHERE login = '$result[login]'");
 
             $stmt->execute();
             $user = $stmt->fetch();
 
-            $user['items'] = unserialize($user['items']);
-
-            for ($i = 0; $i < count($user['items']); $i++) {
-                setcookie("items[$i]", $user['items'][$i], 0, '/');
-            }
+//            $user['items'] = unserialize($user['items']);
+//
+//            for ($i = 0; $i < count($user['items']); $i++) {
+//                setcookie("items[$i]", $user['items'][$i], 0, '/');
+//            }
 
             setcookie('login', $login, 0, '/');
             setcookie('balance', $user['balance'], 0, '/');

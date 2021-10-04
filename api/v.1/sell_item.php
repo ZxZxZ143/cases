@@ -21,12 +21,3 @@ $items = serialize($items);
 $stmt = $pdo->prepare("UPDATE users SET items = '$items' WHERE login = '$_COOKIE[login]'");
 $stmt->execute();
 
-$items = unserialize($items);
-
-setcookie("items", '', -1, '/');
-
-if (!empty($items)) {
-    for ($i = 0; $i < count($items); $i++) {
-        setcookie("items[$i]", $items[$i], 0, '/');
-    }
-}

@@ -2,12 +2,18 @@
 include '../../backend/db/pdo.php';
 
 $items = [];
-//setcookie("items", array());
-var_dump($_COOKIE['items']);
-if (isset($_COOKIE['items'])) {
-    for ($i = 0; $i < count($_COOKIE['items']); $i++) {
-        $n = strpos($_COOKIE['items'][$i], '.');
-        $item = substr($_COOKIE['items'][$i], 0, $n);
+
+$stmt = $pdo->prepare("SELECT items FROM users WHERE login = '$_COOKIE[login]'");
+$stmt->execute();
+$userItems = $stmt->fetch();
+
+$userItems = unserialize($userItems['items']);
+
+if (!empty($userItems)) {
+    for ($i = 0; $i < count($userItems); $i++) {
+
+        $n = strpos($userItems[$i], '.');
+        $item = substr($userItems[$i], 0, $n);
 
         $stmt = $pdo->prepare("SELECT name, src, price, rare FROM items WHERE src = '$item'");
         $stmt->execute();
@@ -57,8 +63,8 @@ include '../../backend/includes/header.php';
     let renameActive = false;
     let items = '<?php echo json_encode($items);?>';
     let itemIndex = '<?php
-        if (isset($_COOKIE['items'])) {
-            echo json_encode($_COOKIE['items']);
+        if (!empty($userItems)) {
+            echo json_encode($userItems);
         }
         ?>';
 
@@ -85,7 +91,7 @@ include '../../backend/includes/header.php';
             $(itemName).addClass('inventory_itemName');
             $(itemPrice).addClass('inventory_itemPrice');
             $(sellButton).addClass('inventory_sellButton');
-            $(img).addClass(items[i].rare);
+            $(img).addClass(items[i].rare.slice(1));
 
             $(sellButton).attr('value', itemIndex[i]);
             $(img).attr('src', '../../assets/img/items/' + items[i].src + '.png');
@@ -108,15 +114,19 @@ include '../../backend/includes/header.php';
             data: {
                 item: $(event.target).attr('value')
             },
-            success: (data) => {}
+            success: (data) => {
+            }
         });
 
         $(event.target.parentNode).remove();
 
-        for (let i; i < items.length; i++) {
-            if (items[i].src === event.target.split('.')[0]) {
-                console.log(items[i].price);
-                user.balance += items[i].price;
+        let sellItem = $(event.target).attr('value');
+        sellItem = sellItem.split('.')[0];
+
+        for (let i = 0; i < items.length; i++) {
+            if (items[i].src === sellItem) {
+
+                user.balance = Number(user.balance) + Number(items[i].price);
                 $('.money').html(user.balance + ' &#8381');
 
                 $.ajax({
@@ -126,8 +136,10 @@ include '../../backend/includes/header.php';
                     data: {
                         balance: user.balance,
                     }
-                })
+                });
+                break;
             }
+
         }
     });
 

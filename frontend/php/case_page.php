@@ -271,7 +271,7 @@ include '../../backend/includes/header.php';
             $(div).addClass('itemInCase');
             $(name).addClass('itemName');
             $(img).addClass('itemImg');
-            $(img).addClass(item.rare);
+            $(img).addClass(item.rare.slice(1));
 
             $(name).html(item.name);
             $(img).attr('src', '../../assets/img/items/' + item.src + '.png');
