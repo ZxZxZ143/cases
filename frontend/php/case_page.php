@@ -197,11 +197,11 @@ include '../../backend/includes/header.php';
             $(div).addClass('item_scroll');
 
             $(img).attr('src', '../../assets/img/items/' + items[itemNum].src + '.png');
-            switch (items[itemNum].rare) {
-                case 'Blue':
+            switch (items[itemNum].rare.slice(1)) {
+                case 'blue':
                     $(div).attr('style', 'background-color: blue');
                     break;
-                case 'Purple':
+                case 'purple':
                     $(div).attr('style', 'background-color: rgb(108, 50, 178)');
                     break;
                 case 'pink':
@@ -295,16 +295,16 @@ include '../../backend/includes/header.php';
         arr = arr.sort((a, b) => a.price > b.price ? 1 : -1);
 
         for (let i = 0; i < arr.length; i++) {
-            if (arr[i].price < container.price / 2 && arr[i].rare !== 'yellow') {
+            if (arr[i].price < container.price / 2 && arr[i].rare.slice(1) !== 'yellow') {
                 minPriceCount++;
             }
-            if (arr[i].price < container.price && arr[i].price > container.price / 2 && arr[i].rare !== 'yellow') {
+            if (arr[i].price < container.price && arr[i].price > container.price / 2 && arr[i].rare.slice(1) !== 'yellow') {
                 lowPriceCount++;
             }
-            if (arr[i].price > container.price && arr[i].price < container.price * 2 && arr[i].rare !== 'yellow') {
+            if (arr[i].price > container.price && arr[i].price < container.price * 2 && arr[i].rare.slice(1) !== 'yellow') {
                 midPriceCount++;
             }
-            if (arr[i].price > container.price * 2 && arr[i].rare !== 'yellow') {
+            if (arr[i].price > container.price * 2 && arr[i].rare.slice(1) !== 'yellow') {
                 maxPriceCount++;
             }
         }
@@ -316,7 +316,7 @@ include '../../backend/includes/header.php';
 
         let randomNum = Math.floor(Math.random() * 1000);
 
-        if (arr[arr.length - 1].rare === 'yellow') {
+        if (arr[arr.length - 1].rare.slice(1) === 'yellow') {
             if (randomNum < 400) {
                 return Math.floor(Math.random() * (minPriceCount - 0 + 1)) + 0;
             }

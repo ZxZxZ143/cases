@@ -16,7 +16,7 @@ if ($sellLastItem === 'yes') {
 } else {
     $items['countItems'] += 1;
 
-    if ($items['items'][0] !== '') {
+    if (!empty($items['items'][0])) {
         $item .= $items['countItems'];
 
         array_push($items['items'], $item);

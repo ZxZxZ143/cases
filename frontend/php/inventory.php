@@ -9,7 +9,7 @@ $userItems = $stmt->fetch();
 
 $userItems = unserialize($userItems['items']);
 
-if (!empty($userItems)) {
+if (!empty($userItems[0])) {
     for ($i = 0; $i < count($userItems); $i++) {
 
         $n = strpos($userItems[$i], '.');

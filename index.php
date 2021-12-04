@@ -47,7 +47,7 @@ include 'backend/includes/header.php';
 
         $(a).attr('href', 'http://localhost/bestcases.kz/frontend/php/case_page.php?' + cases.name);
 
-        $(a).addClass('link');
+        $(a).addClass('link caseLink');
         $(div).addClass('case');
         $(img).addClass('caseImg');
         $(price).addClass('casePrice');

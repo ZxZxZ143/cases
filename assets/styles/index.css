@@ -238,8 +238,7 @@
 }
 
 .itemImg {
-    width: 120px;
-    height: 92px;
+    width: 70%;
     margin-top: 5px;
     margin-bottom: 10px;
 }
@@ -333,8 +332,8 @@
 .avatar {
     position: absolute;
     left: 0;
-    width: 50px;
-    height: 50px;
+    width: 20%;
+    height: 100%;
     border-radius: 50%;
     cursor: pointer;
 }
@@ -343,7 +342,7 @@
     position: absolute;
     display: flex;
     top: 50%;
-    height: 20px;
+    height: 40%;
     font-family: Roboto, sans-serif;
     left: 22%;
     border: 1px solid rgba(109, 174, 1, .45);
@@ -363,8 +362,6 @@
 .balance:hover .fillBalance {
     display: flex;
     background-color: rgba(109, 174, 1, .9);
-    width: 20px;
-    height: 20px;
     border-radius: 5px;
     align-items: center;
     justify-content: space-around;
@@ -389,9 +386,9 @@
     font-family: Roboto, sans-serif;
     position: absolute;
     top: 2px;
-    width: 50px;
-    height: 11px;
-    font-size: 15px;
+    width: 20%;
+    height: 22%;
+    font-size: .9em;
     left: 22%;
     cursor: pointer;
 }
@@ -440,7 +437,7 @@
 .content {
     position: absolute;
     top: 37%;
-    width: 1770px;
+    width: 90%;
     left: 5%;
     display: flex;
     flex-direction: row;
@@ -449,21 +446,24 @@
 }
 
 .nameCase {
-    font-size: 20px;
+    font-size: 1.25em;
     transform: skew(-5deg);
 }
 
 .casePrice {
-    font-size: 25px;
+    font-size: 1.56em;
     color: #ffdc00;
     opacity: 90%;
+}
+
+.caseLink {
+    width: 25%;
+    height: 20%;
 }
 
 .case {
     position: relative;
     top: 0;
-    width: 300px;
-    height: 300px;
     display: flex;
     margin: 20px 27px 20px 27px;
     flex-direction: column;
@@ -487,8 +487,7 @@
 }
 
 .caseImg {
-    width: 250px;
-    height: 192px;
+    width: 80%;
 }
 
 .casePageTitle {
@@ -538,8 +537,7 @@
 }
 
 .imgCase {
-    width: 150px;
-    height: 115px;
+    height: 100%;
 }
 
 .button {
@@ -567,7 +565,7 @@
 
 .itemInCase {
     display: flex;
-    width: 200px;
+    width: 15%;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
@@ -578,8 +576,8 @@
     white-space: nowrap;
     overflow: hidden;
     background: black;
-    height: 125px;
-    width: 550px;
+    height: 41.6%;
+    width: 80%;
     border-radius: 10px;
 }
 
@@ -597,21 +595,20 @@
 }
 
 .casePlace {
-    height: 150px;
-    width: 550px;
+    height: 80%;
+    width: 100%;
     display: flex;
     justify-content: center;
 }
 
 .itemImg_scroll {
-    width: 150px;
-    height: 115px;
+    height: 100%;
 }
 
 .item_scroll {
     display: inline-block;
-    width: 150px;
-    height: 115px;
+    width: 1.5%;
+    height: 92%;
     margin-left: 2px;
     margin-right: 2px;
     margin-top: 5px;
@@ -856,24 +853,24 @@ label {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    height: 100px;
 }
 
 .inventory_avatar {
-    width: 100px;
-    height: 100px;
+    width: 7%;
+    height: 7%;
+    border-radius: 50%;
 }
 
 .inventory_name {
-    font-size: 40px;
+    font-size: 3.5em;
     margin-left: 15px;
 }
 
 .changeName {
+    margin-top: 10px;
     border: 1px solid black;
-    width: 40px;
-    height: 40px;
-    border-radius: 5px;
+    width: 2.5%;
+    border-radius: 15%;
     cursor: pointer;
     transition: .2s;
     margin-left: 10px;
@@ -885,31 +882,32 @@ label {
 }
 
 .rename {
-    width: 35px;
-    height: 35px;
+    width: 100%;
+    height: 100%;
     opacity: 70%;
 }
 
 .inventory_nameInput {
-    width: 280px;
-    height: 30px;
+    width: 95%;
+    height: 100%;
     background-color: #27292d;
     border: none;
     outline: none;
     color: #ffffff;
     opacity: 70%;
-    font-size: 23px;
+    font-size: 2em;
 }
 
 
 .inventory_inputDiv {
+    margin-top: 10px;
     display: flex;
     position: relative;
     border: 1px solid #010101;
     border-radius: 5px;
     margin-left: 15px;
-    width: 290px;
-    height: 40px;
+    width: 90%;
+    height: 43px;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-around;
